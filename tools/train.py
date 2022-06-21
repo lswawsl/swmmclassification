@@ -20,6 +20,7 @@ from mmcls.utils import collect_env, get_root_logger, setup_multi_processes
 
 # E://XDU//code//mmlab//mmclassification-master//configs//vgg//vgg16_b32x8_imagenet.py
 #E:\XDU\code\mmlab\mmclassification-master\configs\vgg\seven_vgg16_b32x8_imagenet.py
+# E:\XDU\code\github\swmmclassification\configs\vision_transformer\my_vit-base-p16_pt-64xb64_in1k-224.py
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a model')
     parser.add_argument('config', help='train config file path')

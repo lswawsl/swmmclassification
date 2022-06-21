@@ -19,9 +19,9 @@ model = dict(
         num_classes=102,
         in_channels=768,
         loss=dict(
-            type='LabelSmoothLoss', label_smooth_val=0.1, #[0 1] * (1 — 0.1) + 0.1 / 2 =[0 1]*(0.9) + 0.05
+            type='LabelSmoothLoss', label_smooth_val=0.1, #[0 1] * (1 — 0.1) + 0.1 / 2 =[0 1]*(0.9) + 0.05 标签平滑
             mode='classy_vision'),#mmcls/models/losses/label_smooth_loss.py
-        hidden_dim=3072),
+        hidden_dim=3072), # 可以自己设置
     train_cfg=dict(
         augments=dict(
             type='BatchMixup', alpha=0.2, num_classes=102, prob=1.0)))
@@ -37,13 +37,13 @@ train_pipeline = [
         interpolation='bicubic'),
     dict(type='RandomFlip', flip_prob=0.5, direction='horizontal'),
     dict(
-        type='AutoAugment',#https://blog.csdn.net/u011583927/article/details/104724419/
+        type='AutoAugment',#https://blog.csdn.net/u011583927/article/details/104724419/  先验知识 自动数据增强（谷歌在ImageNet用强化学习学习到的策略）
         policies=[[{
             'type': 'Posterize',## 降低图片位数
             'bits': 4,
-            'prob': 0.4
+            'prob': 0.4 #概率
         }, {
-            'type': 'Rotate',# 旋转
+            'type': 'Rotate',# 按一定概率旋转
             'angle': 30.0,
             'prob': 0.6
         }],
@@ -272,8 +272,8 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type='MyFilelist',
-        data_prefix='D:\\eclipse-workspace\\PyTorch4\\mmclassification-master\\mmcls\\data\\flower_data\\train_filelist',
-        ann_file='D:\\eclipse-workspace\\PyTorch4\\mmclassification-master\\mmcls\\data\\flower_data\\train.txt',
+        data_prefix='..\\mmcls\\data\\flower_data\\train_filelist',
+        ann_file='..\\mmcls\\data\\flower_data\\train.txt',
         pipeline=[
             dict(type='LoadImageFromFile'),#mmcls/datasets/pipelines/loading.py
             dict(

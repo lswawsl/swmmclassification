@@ -272,10 +272,8 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type='MyFilelist',
-        data_prefix=
-        'D:\eclipse-workspace\PyTorch4\mmclassification-master\mmcls\data\flower_data\train_filelist',
-        ann_file=
-        'D:\eclipse-workspace\PyTorch4\mmclassification-master\mmcls\data\flower_data\train.txt',
+        data_prefix='..\mmcls\data\flower_data\train_filelist',
+        ann_file='..\mmcls\data\flower_data\train.txt',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(
